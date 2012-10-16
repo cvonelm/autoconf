@@ -1,5 +1,7 @@
 GNU Autoconf NEWS - User visible changes.
 
+- AC_PROG_CC is now defined via AC_DEFUN_ONCE, to avoid bloat in 'configure'.
+
 * Noteworthy changes in release 2.69 (2012-04-24) [stable]
 
 ** Autoconf now requires perl 5.6 or better (but generated configure
