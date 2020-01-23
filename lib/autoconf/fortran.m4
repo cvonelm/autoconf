@@ -585,7 +585,7 @@ AC_CACHE_CHECK([how to get verbose linking output from $[]_AC_FC[]],
 [AC_COMPILE_IFELSE([AC_LANG_PROGRAM()],
 [ac_cv_prog_[]_AC_LANG_ABBREV[]_v=
 # Try some options frequently used verbose output
-for ac_verb in -v -verbose --verbose -V -\#\#\#; do
+for ac_verb in -v -verbose -V -\#\#\# --verbose; do
   _AC_PROG_FC_V_OUTPUT($ac_verb)
   # look for -l* and *.a constructs in the output
   for ac_arg in $ac_[]_AC_LANG_ABBREV[]_v_output; do
