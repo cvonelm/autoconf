@@ -1352,8 +1352,9 @@ dnl		The resulting compiler passes the test case here, and that's
 dnl		good enough.  For more, please see the thread starting at:
 dnl            http://lists.gnu.org/archive/html/autoconf/2010-12/msg00059.html
 dnl Tru64	-c99
+dnl NEC SX	-Kc99
 dnl with extended modes being tried first.
-[[-std=gnu99 -std=c99 -c99 -AC99 -D_STDC_C99= -qlanglvl=extc99]], [$1], [$2])[]dnl
+[[-std=gnu99 -std=c99 -c99 -AC99 -D_STDC_C99= -qlanglvl=extc99 -Kc99]], [$1], [$2])[]dnl
 ])# _AC_PROG_CC_C99
 
 
