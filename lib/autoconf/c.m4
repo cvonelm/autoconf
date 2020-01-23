@@ -2004,13 +2004,14 @@ AC_DEFUN([AC_OPENMP],
           dnl   Cray CCE             -homp
           dnl   NEC SX               -Popenmp
           dnl   Lahey Fortran (Linux)  --openmp
+	  dnl   Fujitsu              -Kopenmp
 	  dnl If in this loop a compiler is passed an option that it doesn't
 	  dnl understand or that it misinterprets, the AC_LINK_IFELSE test
 	  dnl will fail (since we know that it failed without the option),
 	  dnl therefore the loop will continue searching for an option, and
 	  dnl no output file called 'penmp' or 'mp' is created.
 	  for ac_option in -fopenmp -xopenmp -openmp -mp -omp -qsmp=omp -homp \
-                           -Popenmp --openmp; do
+                           -Popenmp --openmp -Kopenmp; do
 	    ac_save_[]_AC_LANG_PREFIX[]FLAGS=$[]_AC_LANG_PREFIX[]FLAGS
 	    _AC_LANG_PREFIX[]FLAGS="$[]_AC_LANG_PREFIX[]FLAGS $ac_option"
 	    AC_LINK_IFELSE([_AC_LANG_OPENMP],
