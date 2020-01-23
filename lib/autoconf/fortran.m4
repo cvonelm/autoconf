@@ -691,6 +691,13 @@ while test $[@%:@] != 1; do
 			       ac_cv_[]_AC_LANG_ABBREV[]_libs="$ac_cv_[]_AC_LANG_ABBREV[]_libs $ac_j"])
 	  done
 	  ;;
+	-Y*)
+	  for ac_j in `AS_ECHO(["$ac_arg"]) | sed -e 's/-Y/-L/;s/"//g;s/:/ -L/g'`; do
+	    _AC_LIST_MEMBER_IF($ac_j, $ac_cv_[]_AC_LANG_ABBREV[]_libs, ,
+			       [ac_arg="$ac_arg $ac_j"
+			       ac_cv_[]_AC_LANG_ABBREV[]_libs="$ac_cv_[]_AC_LANG_ABBREV[]_libs $ac_j"])
+	  done
+	  ;;
 	-[[lLR]]*)
 	  _AC_LIST_MEMBER_IF($ac_arg, $ac_cv_[]_AC_LANG_ABBREV[]_libs, ,
 			     ac_cv_[]_AC_LANG_ABBREV[]_libs="$ac_cv_[]_AC_LANG_ABBREV[]_libs $ac_arg")
