@@ -1998,7 +1998,7 @@ AC_DEFUN([AC_OPENMP],
 	  dnl Try these flags:
 	  dnl   GCC >= 4.2           -fopenmp
 	  dnl   SunPRO C             -xopenmp
-	  dnl   Intel C              -openmp
+	  dnl   Intel C              -qopenmp|-openmp
 	  dnl   SGI C, PGI C         -mp
 	  dnl   Tru64 Compaq C       -omp
 	  dnl   IBM C (AIX, Linux)   -qsmp=omp
@@ -2011,7 +2011,7 @@ AC_DEFUN([AC_OPENMP],
 	  dnl will fail (since we know that it failed without the option),
 	  dnl therefore the loop will continue searching for an option, and
 	  dnl no output file called 'penmp' or 'mp' is created.
-	  for ac_option in -fopenmp -xopenmp -openmp -mp -omp -qsmp=omp -homp \
+	  for ac_option in -fopenmp -xopenmp -qopenmp -openmp -mp -omp -qsmp=omp -homp \
                            -Popenmp --openmp -Kopenmp; do
 	    ac_save_[]_AC_LANG_PREFIX[]FLAGS=$[]_AC_LANG_PREFIX[]FLAGS
 	    _AC_LANG_PREFIX[]FLAGS="$[]_AC_LANG_PREFIX[]FLAGS $ac_option"
