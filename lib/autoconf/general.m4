@@ -2235,7 +2235,13 @@ _AS_ECHO_N([checking $1... ]); }dnl
 # ---------------------
 m4_define([AC_MSG_RESULT],
 [{ _AS_ECHO_LOG([result: $1])
-_AS_ECHO([$1]); }dnl
+m4_bmatch([$1],
+    [^yes\>\|^ok\>],                    [_AS_ECHO([${as__grn}$1${as__std}])],
+    [^no\>\|^failed\>\|^unsupported\>], [_AS_ECHO([${as__red}$1${as__std}])],
+    [AS_CASE(["_AS_QUOTE([$1])"],
+[[yes|ok|yes@<:@\ ,@:>@*]],               [_AS_ECHO([${as__grn}$1${as__std}])],
+[[no|failed|unsupported|no@<:@\ ,@:>@*]], [_AS_ECHO([${as__red}$1${as__std}])],
+                                          [_AS_ECHO([${as__blu}$1${as__std}])])]); }dnl
 ])
 
 
@@ -2245,12 +2251,12 @@ _AS_ECHO([$1]); }dnl
 # AC_MSG_FAILURE(ERROR, [EXIT-STATUS = 1])
 # ----------------------------------------
 m4_copy([AS_WARN],    [AC_MSG_WARN])
-m4_copy([AS_MESSAGE], [AC_MSG_NOTICE])
+m4_copy([AS_INFO],    [AC_MSG_NOTICE])
 m4_copy([AS_ERROR],   [AC_MSG_ERROR])
 m4_define([AC_MSG_FAILURE],
-[{ AS_MESSAGE([error: in `$ac_pwd':], 2)
-AC_MSG_ERROR([$1
-See `config.log' for more details], [$2]); }])
+[{ AS_MESSAGE([error: in `$ac_pwd':], 2, [${as__red}], [${as__std}])
+AC_MSG_ERROR([$1], [$2], [${as__red}], [${as__std}])
+AC_MSG_ERROR([See `config.log' for more details], [$2], [${as__red}], [${as__std}]); }])
 
 
 # _AC_MSG_LOG_CONFTEST
