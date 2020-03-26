@@ -858,23 +858,31 @@ m4_define([_AS_ECHO_N],
 [AS_ECHO_N(["_AS_QUOTE([$1])"]) >&m4_default([$2], [AS_MESSAGE_FD])])
 
 
-# AS_MESSAGE(STRING, [FD = AS_MESSAGE_FD])
-# ----------------------------------------
+# AS_MESSAGE(STRING, [FD = AS_MESSAGE_FD], [PRE-STRING], [POST-STRING])
+# ---------------------------------------------------------------------
 # Output "`basename $0`: STRING" to the open file FD, and if logging
 # is enabled, copy it to the log with a reference to LINENO.
+# Surround STRING by PRE-/POST-STRING for the output to FD.
 m4_defun_init([AS_MESSAGE],
 [AS_REQUIRE([_AS_ME_PREPARE])],
 [m4_ifval(AS_MESSAGE_LOG_FD,
 	  [{ _AS_ECHO_LOG([$1])
-_AS_ECHO([$as_me: $1], [$2]);}],
-	  [_AS_ECHO([$as_me: $1], [$2])])[]])
+_AS_ECHO([$as_me: $3$1$4], [$2]);}],
+	  [_AS_ECHO([$as_me: $3$1$4], [$2])])[]])
 
 
 # AS_WARN(PROBLEM)
 # ----------------
 # Output "`basename $0`: WARNING: PROBLEM" to stderr.
 m4_define([AS_WARN],
-[AS_MESSAGE([WARNING: $1], [2])])# AS_WARN
+[AS_MESSAGE([WARNING: $1], [2], [${as__yel}], [${as__std}])])# AS_WARN
+
+
+# AS_INFO(PROBLEM)
+# ----------------
+# Output "`basename $0`: info: PROBLEM" to stderr.
+m4_define([AS_INFO],
+[AS_MESSAGE([info: $1], [2], [${as__blu}], [${as__std}])])# AS_INFO
 
 
 # _AS_ERROR_PREPARE
@@ -903,7 +911,7 @@ m4_ifval(AS_MESSAGE_LOG_FD,
     _AS_ECHO_LOG([error: $[2]])
   fi
 m4_define([AS_MESSAGE_LOG_FD])], [m4_pushdef([AS_MESSAGE_LOG_FD])])dnl
-  AS_MESSAGE([error: $[2]], [2])
+  AS_MESSAGE([error: $[2]], [2], [${as__red}], [${as__std}])
 _m4_popdef([AS_MESSAGE_LOG_FD])dnl
   AS_EXIT([$as_status])])])
 
