@@ -2255,8 +2255,8 @@ m4_copy([AS_INFO],    [AC_MSG_NOTICE])
 m4_copy([AS_ERROR],   [AC_MSG_ERROR])
 m4_define([AC_MSG_FAILURE],
 [{ AS_MESSAGE([error: in `$ac_pwd':], 2, [${as__red}], [${as__std}])
-AC_MSG_ERROR([$1
-See `config.log' for more details], [$2], [${as__red}], [${as__std}]); }])
+AC_MSG_ERROR([$1${as__std}
+${as__red}See `config.log' for more details], [$2]); }])
 
 
 # _AC_MSG_LOG_CONFTEST
