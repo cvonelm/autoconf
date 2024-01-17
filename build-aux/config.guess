@@ -133,10 +133,19 @@ if (test -f /.attbin/uname) >/dev/null 2>&1 ; then
 	PATH=$PATH:/.attbin ; export PATH
 fi
 
-UNAME_MACHINE=`(uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
-UNAME_RELEASE=`(uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
-UNAME_SYSTEM=`(uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
-UNAME_VERSION=`(uname -v) 2>/dev/null` || UNAME_VERSION=unknown
+if [ "`/opt/nec/ve/bin/ve-uname -m  2>/dev/null`" == ve ]
+then
+       UNAME_MACHINE=`(/opt/nec/ve/bin/ve-uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
+       UNAME_RELEASE=`(/opt/nec/ve/bin/ve-uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
+       UNAME_SYSTEM=`(/opt/nec/ve/bin/ve-uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
+       UNAME_VERSION=`(/opt/nec/ve/bin/ve-uname -v) 2>/dev/null` || UNAME_VERSION=unknown
+
+else
+       UNAME_MACHINE=`(/usr/bin/uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
+       UNAME_RELEASE=`(/usr/bin/uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
+       UNAME_SYSTEM=`(/usr/bin/uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
+       UNAME_VERSION=`(/usr/bin/uname -v) 2>/dev/null` || UNAME_VERSION=unknown
+fi
 
 # Note: order is significant - the case branches are not exclusive.
 
@@ -997,6 +1006,9 @@ EOF
 	echo ${UNAME_MACHINE}-unknown-linux-gnu
 	exit ;;
     xtensa*:Linux:*:*)
+	echo ${UNAME_MACHINE}-unknown-linux-gnu
+	exit ;;
+    ve:Linux:*:*)
 	echo ${UNAME_MACHINE}-unknown-linux-gnu
 	exit ;;
     i*86:DYNIX/ptx:4*:*)
